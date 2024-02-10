@@ -58,7 +58,6 @@ if __name__ == '__main__':
         logging.debug(f'file {last_in_1day} is actual')
         exit('\narchive finish\n')
 
-
     if func_num_of_files(3, archive_1day):
         first_in_1day, f_time = date_of_file(archive_1day, old=True)
         logging.debug(f'{first_in_1day=}')
@@ -77,7 +76,6 @@ if __name__ == '__main__':
             exit('\narchive finish\n')
     else:
         exit('\narchive finish\n')
-
 
     if func_num_of_files(3, archive_3day):
         first_in_3day, f_time = date_of_file(archive_3day, old=True)
