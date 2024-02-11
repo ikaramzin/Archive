@@ -78,17 +78,17 @@ def func_is_changed(directory):
             for chunk in iter(lambda: f.read(65536), b''):
                 new_hash.update(chunk)
     logging.debug(f'new hash = {new_hash.hexdigest()}')
-    if os.path.exists('./hashmd5'):
-        with open('./hashmd5', 'r') as f:
+    if os.path.exists('./.hashmd5'):
+        with open('./.hashmd5', 'r') as f:
             cur_hash = f.read()
             logging.debug(f'current hash = {cur_hash}')
         if cur_hash != new_hash.hexdigest():
             logging.debug('the hashes is NOT equal')
-            with open('./hashmd5', 'w') as f:
+            with open('./.hashmd5', 'w') as f:
                 f.write(new_hash.hexdigest())
             is_changes = True
     else:
-        with open('./hashmd5', 'w+') as f:
+        with open('./.hashmd5', 'w+') as f:
             logging.debug('new hash is created')
             f.write(new_hash.hexdigest())
             is_changes = True
