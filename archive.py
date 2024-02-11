@@ -48,11 +48,16 @@ def date_of_file(directory, old=False):
     files = os.listdir(directory)
     files = [os.path.join(directory, file) for file in files]
     files = [file for file in files if os.path.isfile(file)]
-    if old:
-        value = min(files, key=func_birthday)
+    if files:
+        if old:
+            value = min(files, key=func_birthday)
+        else:
+            value = max(files, key=func_birthday)
+        return value, func_birthday(value)
     else:
-        value = max(files, key=func_birthday)
-    return value, func_birthday(value)
+        value = 'folder is empty'
+        date = 433082400.0
+        return value, date
 
 
 def func_is_changed(directory):
@@ -98,6 +103,7 @@ if __name__ == '__main__':
         datefmt='%Y-%m-%d %H:%M:%S',
         style='{'
     )
+    logging.debug('='*50)
     # Определяем текущее время
     cur_time = time.time()
     # Определяем самый свежий файл и время его создания
