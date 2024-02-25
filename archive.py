@@ -112,9 +112,10 @@ if __name__ == '__main__':
     logging.debug(f'f_time = {time.ctime(f_time)}')
     # Опеределяем сколько дней прошло, после создания самого свежего файла
     period = timedelta(seconds=cur_time - f_time)
-    logging.debug(f'days = {period.days}')
+    period_hours = period.total_seconds()/60/60
+    logging.debug(f'hours = {period_hours}')
     # Если прошло более 1 дня, делаем новый архив
-    if period.days > 0:
+    if period_hours > 23:
         # Определяем были ли изменения в папке, после предыдущего раза
         if func_is_changed(archive_target):
             # Создаем архив по заданным параметрам
